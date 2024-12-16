@@ -1,11 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="118acd3f-85bb-4268-9986-d0b674452397" name="Changes" comment="" />
+    <list default="true" id="118acd3f-85bb-4268-9986-d0b674452397" name="Changes" comment="init">
+      <change afterPath="$PROJECT_DIR$/home/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/home/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/home/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/home/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/home/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/home/templates/home/home.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/home/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/home/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/inc/nabvar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nasaji_project/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/nasaji_project/settings.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="develop" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="2qI5EWYem2NQrYvxLOH6YUFOGv8" />
   <component name="ProjectViewState">
@@ -14,9 +46,14 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "E:/nasaji",
+    "last_opened_file_path": "E:/nasaji_project",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -54,10 +91,23 @@
       <option name="presentableId" value="Default" />
       <updated>1734337137616</updated>
       <workItem from="1734337154298" duration="50000" />
+      <workItem from="1734337285180" duration="1491000" />
     </task>
+    <task id="LOCAL‎−۰۰۰۰۱" summary="init">
+      <option name="closed" value="true" />
+      <created>1734337465140</created>
+      <option name="number" value="LOCAL‎−۰۰۰۰۱" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۰۱" />
+      <updated>1734337465140</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="init" />
+    <option name="LAST_COMMIT_MESSAGE" value="init" />
   </component>
 </project>
