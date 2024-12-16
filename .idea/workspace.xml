@@ -4,20 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="118acd3f-85bb-4268-9986-d0b674452397" name="Changes" comment="init">
-      <change afterPath="$PROJECT_DIR$/home/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/home/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/home/apps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/home/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/home/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/home/templates/home/home.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/home/tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/home/views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/inc/nabvar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="118acd3f-85bb-4268-9986-d0b674452397" name="Changes" comment="creat html pages">
+      <change afterPath="$PROJECT_DIR$/home/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nasaji_project/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/nasaji_project/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nasaji_project/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/nasaji_project/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +19,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -49,6 +41,7 @@
     "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "home__app",
     "last_opened_file_path": "E:/nasaji_project",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -57,6 +50,12 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\nasaji_project\home" />
+      <recent name="E:\nasaji_project\home\templates\home" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="nasaji_project" type="Python.DjangoServer" factoryName="Django server">
       <module name="nasaji_project" />
@@ -64,6 +63,7 @@
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="nasaji_project.settings" />
       </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="" />
@@ -91,7 +91,8 @@
       <option name="presentableId" value="Default" />
       <updated>1734337137616</updated>
       <workItem from="1734337154298" duration="50000" />
-      <workItem from="1734337285180" duration="1491000" />
+      <workItem from="1734337285180" duration="1692000" />
+      <workItem from="1734339497722" duration="658000" />
     </task>
     <task id="LOCAL‎−۰۰۰۰۱" summary="init">
       <option name="closed" value="true" />
@@ -100,14 +101,33 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۰۱" />
       <updated>1734337465140</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL‎−۰۰۰۰۲" summary="creat html pages">
+      <option name="closed" value="true" />
+      <created>1734339314052</created>
+      <option name="number" value="LOCAL‎−۰۰۰۰۲" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۰۲" />
+      <updated>1734339314052</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init" />
-    <option name="LAST_COMMIT_MESSAGE" value="init" />
+    <MESSAGE value="creat html pages" />
+    <option name="LAST_COMMIT_MESSAGE" value="creat html pages" />
   </component>
 </project>
