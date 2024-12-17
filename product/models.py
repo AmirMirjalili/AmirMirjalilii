@@ -40,7 +40,7 @@ class Product(models.Model):
         on_delete=models.CASCADE,
         related_name='product'
     )
-    picture = models.ImageField(upload_to='product/', null=True, blank=True)
+    pictur = models.ImageField(upload_to='product/', null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     is_special = models.BooleanField(default=False)
 
