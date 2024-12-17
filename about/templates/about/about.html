@@ -1,31 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
-    <section class="py-5">
-    <div class="container px-4 px-lg-5 my-5">
-        <div class="row gx-4 gx-lg-5 align-items-center">
-            <!-- Product Image -->
-            <div class="col-md-6">
-                <img class="card-img-top mb-5 mb-md-0" src="{{ product.picture.url }}" alt="{{ product.name }}" />
-            </div>
-            <!-- Product Details -->
-            <div class="col-md-6">
-                <div class="small mb-1">Category: {{ product.category }}</div>
-                <h1 class="display-5 fw-bolder">{{ product.name }}</h1>
-                <div class="fs-5 mb-5">
-                    <span>{{ product.price|intcomma }} toman</span>
-                </div>
-                <p class="lead">{{ product.description }}</p>
-                <div class="d-flex">
-                    <a class="btn btn-outline-dark flex-shrink-0" href="#">
-                        <i class="bi-cart-fill me-1"></i>
-                        Add to Cart
-                    </a>
-                    <a class="btn btn-secondary ms-2" href="{% url 'home:home' %}">
-                        Back to Home
-                    </a>
+   <header class="bg-dark py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder">About us</h1>
+                    <br>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
+     </header>
+    <h1>About Us</h1><br><br>
+    <p>
+
+<h3>Welcome to Amir textile company</h3><br>where passion meets innovation. Founded with a vision to make a difference, we strive to deliver top-quality products and services tailored to your
+    <br> Our team is dedicated to excellence, creativity, and building meaningful connections with our customers. Together, we aim to create a brighter, more inspired future.</p>
+    <h3>Address:</h3><br>
+    <P>Yazd, Mulla Sadra Street, 25</P>
+
+    <br><br><br><br><br><br>
 {% endblock %}
