@@ -1,0 +1,33 @@
+<!-- profile.html -->
+{% extends 'base.html' %}
+
+{% block title %}Profile - Favan Company{% endblock %}
+
+{% block content %}
+    <br><br><br><br><br>
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm border-0">
+                <div class="card-header" style="background-color: #000000; color: white; text-align: center;">
+                    <h3>Welcome</h3>
+                </div>
+                <div class="card-body">
+                    <br>
+                    <p><strong>Name:</strong> {{ user }} {{ user.last_name }}</p><br>
+                    <p><strong>Email:</strong> {{ user.email }}</p><br>
+                    <p><strong>Phone Number:</strong> {{ user.phone }}</p><br>
+                    
+                    <!-- Add more profile details here -->
+                </div>
+                <div class="card-footer text-center">
+                    <form method="POST" action="{% url 'account:logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-secondary text-white" style="background-color: #6c757d; border-color: #6c757d;">Log Out</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><br><br><br><br><br>
+{% endblock %}
