@@ -2,6 +2,7 @@ from django.db import models
 from mptt.models import MPTTModel, TreeForeignKey
 from django.utils.text import slugify
 from django.urls import reverse
+from ckeditor.fields import RichTextField
 
 class Category(MPTTModel):
     name = models.CharField(max_length=200, unique=True)
@@ -33,14 +34,16 @@ class Category(MPTTModel):
 class Product(models.Model):
     name = models.CharField(max_length=200)
     price = models.CharField(max_length=20,)
-    description = models.TextField()
+    description = RichTextField(default='')
     slug = models.SlugField(max_length=200, unique=True, blank=True)
     category = TreeForeignKey(
         Category,
         on_delete=models.CASCADE,
-        related_name='product'
+        related_name='product',
+        null = True,
+        blank = True
     )
-    pictur = models.ImageField(upload_to='product/', null=True, blank=True)
+    imag = models.ImageField(upload_to='product/', null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     is_special = models.BooleanField(default=False)
 
