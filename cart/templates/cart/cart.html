@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block content %}
+    <div class="container py-5">
+        <h1 class="text-center mb-4">Shopping Cart</h1>
+
+        {% if cart.items.all %}
+            <div class="row">
+                {% for item in cart.items.all %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card shadow-sm">
+                            <img src="{{ item.product.imag.url }}" class="card-img-top" alt="{{ item.product.name }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ item.product.name }}</h5>
+                                <p class="card-text">Price: {{ item.product.price|intcomma }} toman</p>
+                                <p class="card-text">Quantity: {{ item.quantity }}</p>
+                                <p class="card-text">
+                                    Total: {{ item.get_total_price|intcomma }} toman
+                                </p>
+                                <a href="{% url 'cart:remove_from_cart' item.id %}" class="btn btn-danger">Remove</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="text-center mt-4">
+                <h3>Total Price: {{ cart.get_total_price|intcomma }} toman</h3>
+                <a href="{% url 'checkout:checkout' %}" class="btn btn-success mt-3">Proceed to Checkout</a>
+            </div>
+        {% else %}
+            <p class="text-center">Your cart is empty.</p>
+        {% endif %}
+    </div>
+{% endblock %}

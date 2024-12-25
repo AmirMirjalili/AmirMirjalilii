@@ -11,4 +11,6 @@ urlpatterns = [
     path('about_us/', include('about.urls', namespace='about')),
     path('login/', include('account.urls', namespace='account')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('cart/', include('cart.urls')),
+    path('checkout/', include('checkout.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
