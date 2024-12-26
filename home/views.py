@@ -9,5 +9,5 @@ class HomeView(View):
 
 class special_view(View):
     def get(self,request):
-        product_s = Product.objects.all().filter(is_special=True)
+        product_s = Product.objects.all().filter(is_discount=True)
         return render(request, 'home/special.html', {'product_s':product_s})

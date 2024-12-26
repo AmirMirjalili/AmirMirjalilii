@@ -1,8 +1,9 @@
 {% load mptt_tags %}
+{% load static %}
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
     <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="#">NASAJI</a>
+        <img class="ligo-img-top" src={% static 'images/logonomy-1735200089525.jpeg' %} alt="..." />
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -21,7 +22,7 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="{% url 'home:home' %}">All products</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="{% url 'home:special' %}">Special product</a></li>
+                        <li><a class="dropdown-item" href="{% url 'home:special' %}">Discount percentage</a></li>
                         <li><a class="dropdown-item" href="#!">New products</a></li>
                     </ul>
                 </li>

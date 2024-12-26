@@ -15,22 +15,88 @@
                                 <h5 class="card-title">{{ item.product.name }}</h5>
                                 <p class="card-text">Price: {{ item.product.price|intcomma }} toman</p>
                                 <p class="card-text">Quantity: {{ item.quantity }}</p>
-                                <p class="card-text">
-                                    Total: {{ item.get_total_price|intcomma }} toman
-                                </p>
-                                <a href="{% url 'cart:remove_from_cart' item.id %}" class="btn btn-danger">Remove</a>
+                                <p class="card-text">Total: {{ item.get_total_price|intcomma }} toman</p>
+                                {% if item.product.discount_percentage > 0 %}
+                                    <p class="card-text text-dark">Discounted Price: {{ item.get_discounted_price|intcomma }} toman</p>
+                                {% endif %}
+                                <div class="d-flex align-items-center">
+                                    <label for="remove-quantity-{{ item.id }}">Remove Quantity:</label>
+                                    <input type="number" id="remove-quantity-{{ item.id }}" class="mx-2" value="1" min="1" max="{{ item.quantity }}">
+                                </div>
+                                <button class="btn btn-danger remove-item" data-item-id="{{ item.id }}">Remove</button>
                             </div>
                         </div>
                     </div>
                 {% endfor %}
             </div>
-
-            <div class="text-center mt-4">
-                <h3>Total Price: {{ cart.get_total_price|intcomma }} toman</h3>
-                <a href="{% url 'checkout:checkout' %}" class="btn btn-success mt-3">Proceed to Checkout</a>
-            </div>
         {% else %}
             <p class="text-center">Your cart is empty.</p>
         {% endif %}
     </div>
+
+    <!-- Cart Summary Box -->
+    <div class="col-md-4 mx-auto mb-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h4 class="card-title text-center">Cart Summary</h4>
+                <p><strong>Total Price:</strong> {{ cart.get_total_price|floatformat:2|intcomma }} toman</p>
+
+                <!-- نمایش تخفیف کلی -->
+                {% if cart.get_total_discount > 0 %}
+                    <p><strong>Discount:</strong> {{ cart.get_total_discount|intcomma }} toman</p>
+                {% else %}
+                    <p><strong>Discount:</strong> 0 toman</p>
+                {% endif %}
+
+                <!-- نمایش قیمت کل بعد از تخفیف -->
+                <p><strong>Total After Discount:</strong>
+                    {% if cart.get_total_discount > 0 %}
+                        {{ cart.get_discounted_price|floatformat:2|intcomma }} toman
+                    {% else %}
+                        {{ cart.get_total_price|intcomma }} toman
+                    {% endif %}
+                </p>
+
+                <div class="d-flex justify-content-between">
+                    <a href="{% url 'checkout:checkout' %}" class="btn btn-success mt-3">Proceed to Checkout</a>
+                    <a href="{% url 'home:home' %}" class="btn btn-secondary mt-3">Back to home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+
+    <form method="post" id="remove-form" style="display:none;">
+        {% csrf_token %}
+    </form>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.remove-item').click(function () {
+                let itemId = $(this).data('item-id');
+                let removeQuantity = $('#remove-quantity-' + itemId).val();
+
+                if (removeQuantity > 0) {
+                    $.ajax({
+                        url: `/cart/remove/${itemId}/`,
+                        method: 'POST',
+                        data: {
+                            quantity: removeQuantity,
+                            csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val(),
+                        },
+                        success: function (response) {
+                            location.reload();
+                        },
+                        error: function (xhr, status, error) {
+                            alert("Error removing item from cart.");
+                        }
+                    });
+                } else {
+                    alert('Please enter a valid quantity to remove.');
+                }
+            });
+        });
+    </script>
 {% endblock %}

@@ -24,12 +24,31 @@
             <div class="col-md-6">
                 <div class="small mb-1">Category: {{ product.category }}</div>
                 <h1 class="display-5 fw-bolder">{{ product.name }}</h1>
+
+                <!-- Price Section -->
                 <div class="fs-5 mb-5">
-                    <span>{{ product.price|intcomma }} toman</span>
+                    <span>
+                        {% if product.discount_percentage > 0 %}
+                            <span style="text-decoration: line-through;">{{ product.price|intcomma }} toman</span>
+                            <strong>{{ product.get_discounted_price|floatformat:2|intcomma }} toman</strong>
+                        {% else %}
+                            {{ product.price|intcomma }} toman
+                        {% endif %}
+                    </span>
                 </div>
+
                 <p class="lead">{{ product.description | safe }}</p>
-                <div class="d-flex">
-                    <a class="btn btn-outline-dark flex-shrink-0" href="{% url 'cart:add_to_cart' product.id %}">
+                <div class="d-flex align-items-center">
+                    <!-- Quantity Control -->
+                    <div class="quantity-container d-flex align-items-center me-3">
+                        <button class="btn btn-outline-dark decrease" type="button" id="decrease">-</button>
+                        <input type="text" class="quantity-input mx-2 text-center" value="1" id="input">
+                        <button class="btn btn-outline-dark increase" type="button" id="increase">+</button>
+                    </div>
+                    <!-- Add to Cart Button -->
+                    <a class="btn btn-outline-dark flex-shrink-0"
+                       href="{% url 'cart:add_to_cart' product.id %}?quantity=1"
+                       id="cart-btn">
                         <i class="bi-cart-fill me-1"></i>
                         Add to Cart
                     </a>
@@ -41,4 +60,33 @@
         </div>
     </div>
 </section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#increase').click(function () {
+            let input = $(this).siblings('#input');
+            let currentValue = parseInt(input.val());
+            let newValue = currentValue + 1;
+            input.val(newValue);
+            updateAddToCartLink(newValue);
+        });
+
+        $('#decrease').click(function () {
+            let input = $(this).siblings('#input');
+            let currentValue = parseInt(input.val());
+            if (currentValue > 1) {
+                let newValue = currentValue - 1;
+                input.val(newValue);
+                updateAddToCartLink(newValue);
+            }
+        });
+
+        function updateAddToCartLink(quantity) {
+            let addToCartLink = $('#cart-btn');
+            let href = addToCartLink.attr('href').split('?')[0];
+            addToCartLink.attr('href', href + '?quantity=' + quantity);
+        }
+    });
+</script>
 {% endblock %}
