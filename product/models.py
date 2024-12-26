@@ -33,7 +33,7 @@ class Category(MPTTModel):
 
 class Product(models.Model):
     name = models.CharField(max_length=200)
-    price = models.CharField(max_length=20,)
+    price = models.DecimalField(max_digits=20,decimal_places=2)
     description = RichTextField(default='')
     slug = models.SlugField(max_length=200, unique=True, blank=True)
     category = TreeForeignKey(
@@ -45,7 +45,8 @@ class Product(models.Model):
     )
     imag = models.ImageField(upload_to='product/', null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
-    is_special = models.BooleanField(default=False)
+    is_discount = models.BooleanField(default=False)
+    discount_percentage = models.DecimalField(max_digits=5, decimal_places=0, default=0,help_text="Enter discount percentage (e.g., 10 for 10%)")
 
 
     def save(self, *args, **kwargs):
@@ -58,6 +59,13 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('details_view:product_details', kwargs={'slug': self.slug})
+
+    def get_discounted_price(self):
+        if self.discount_percentage > 0:
+            discount_amount = (self.discount_percentage / 100) * self.price
+            discounted_price = self.price - discount_amount
+            return discounted_price
+        return self.price
 
     class Meta:
         verbose_name = "pruduct"
