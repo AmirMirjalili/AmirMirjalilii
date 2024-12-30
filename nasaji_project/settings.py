@@ -33,7 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'ckeditor',
+    'django_ckeditor_5',
     'ckeditor_uploader',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'mptt',
     'cart',
-    'checkout'
+    'checkout',
+
 ]
 
 MIDDLEWARE = [

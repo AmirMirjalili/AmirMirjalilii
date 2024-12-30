@@ -33,7 +33,7 @@ class Category(MPTTModel):
 
 class Product(models.Model):
     name = models.CharField(max_length=200)
-    price = models.DecimalField(max_digits=20,decimal_places=2)
+    price = models.DecimalField(max_digits=20,decimal_places=0)
     description = RichTextField(default='')
     slug = models.SlugField(max_length=200, unique=True, blank=True)
     category = TreeForeignKey(
@@ -46,7 +46,7 @@ class Product(models.Model):
     imag = models.ImageField(upload_to='product/', null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     is_discount = models.BooleanField(default=False)
-    discount_percentage = models.DecimalField(max_digits=5, decimal_places=0, default=0,help_text="Enter discount percentage (e.g., 10 for 10%)")
+    discount_percentage = models.DecimalField(max_digits=5, decimal_places=0, default=0)
 
 
     def save(self, *args, **kwargs):

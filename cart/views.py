@@ -1,46 +1,55 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from product.models import Product
-from .models import Cart, CartItem
 from django.http import JsonResponse
+from django.shortcuts import render, get_object_or_404, redirect
+from product.models import Product
 
 def get_cart(request):
-    if request.user.is_authenticated:
-        cart, created = Cart.objects.get_or_create(user=request.user)
-    else:
-        cart, created = Cart.objects.get_or_create(user=None)
+    cart = request.session.get('cart', {})
     return cart
+
 
 def add_to_cart(request, product_id):
     product = get_object_or_404(Product, id=product_id)
-    cart = get_cart(request)
     quantity = int(request.GET.get('quantity', 1))
-    cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
 
-    if not created:
-        cart_item.quantity += quantity
-        cart_item.save()
+    cart = get_cart(request)
+
+    if str(product_id) in cart:
+        cart[str(product_id)]['quantity'] += quantity
     else:
-        cart_item.quantity = quantity
-        cart_item.save()
+        cart[str(product_id)] = {
+            'name': product.name,
+            'price': float(product.price),
+            'quantity': quantity,
+            'image_url': product.imag.url if product.imag else ''
+        }
+
+    request.session['cart'] = cart
+    request.session.modified = True
 
     return redirect('cart:cart')
 
 
 def view_cart(request):
     cart = get_cart(request)
-    return render(request, 'cart/cart.html', {'cart': cart})
+    total_price = sum(item['price'] * item['quantity'] for item in cart.values())
+    return render(request, 'cart/cart.html', {'cart': cart, 'total_price': total_price})
 
-def remove_from_cart(request, item_id):
-    cart_item = get_object_or_404(CartItem, id=item_id)
 
-    if request.method == 'POST':
-        quantity_to_remove = int(request.POST.get('quantity'))
-        if quantity_to_remove >= cart_item.quantity:
-            cart_item.delete()
-        else:
-            cart_item.quantity -= quantity_to_remove
-            cart_item.save()
+def remove_from_cart(request, product_id):
+    cart = get_cart(request)
 
-        return JsonResponse({'status': 'success'})
+    if str(product_id) in cart:
+        if request.method == 'POST':
+            quantity_to_remove = int(request.POST.get('quantity', 1))
+            if cart[str(product_id)]['quantity'] <= quantity_to_remove:
+                del cart[str(product_id)]
+            else:
+                cart[str(product_id)]['quantity'] -= quantity_to_remove
+
+            request.session['cart'] = cart
+            request.session.modified = True  # ذخیره تغییرات
+            return JsonResponse({'status': 'success'})
 
     return redirect('cart:cart')
+
+
